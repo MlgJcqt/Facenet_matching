@@ -5,10 +5,11 @@ Requires:
 * Anaconda
 * Python
 
-./Facenet/ contains :
+./facenet/ contains :
 * Facenet from https://github.com/davidsandberg/facenet
 * Model from https://drive.google.com/file/d/1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-/view
 * environment.yml
+* requirements.txt
 * fn_compare.py script adapted from original compare.py (modifications allows comparing images from path 1 to images in path2 and copying mathcing scores list in results.csv)
 
 [1] create conda environment 
@@ -21,5 +22,5 @@ conda activate Facenet2.7
 [2] Run fn_compare.py 
 ```
 cd src/
-python fn_compare.py ~/Data/fold1/ ~/Data/fold2/ ~/results.csv
+python fn_compare.py ~/facenet/Data/images1/ ~/facenet/Data/images2/ ~/results.csv
 ```
