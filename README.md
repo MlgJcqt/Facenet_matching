@@ -13,7 +13,8 @@ git clone https://github.com/davidsandberg/facenet
 [2] Get model from https://drive.google.com/file/d/1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-/view
 and extract to ~/facenet/data/model/20180402-114759.pb
 
-[3] Put environment.yml and requirements.txt in ~/facenet/
+[3] Put environment.yml and requirements.txt in ~/facenet/ 
+    and fn_compare.py in ~/facenet/src/
 
 [4] create ~/facenet/Data/images1/ and ~/facenet/Data/images2/ with images to compare
 
