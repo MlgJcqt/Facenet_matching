@@ -17,14 +17,14 @@ and extract to ~/facenet/data/model/20180402-114759.pb
 
 [4] create ~/facenet/Data/images1/ and ~/facenet/Data/images2/ with images to compare
 
-[4] set conda environment 
+[5] set conda environment 
 ```
 cd facenet/
 conda env create -f environment.yml
 conda activate Facenet2.7
 ```
 
-[2] Run fn_compare.py 
+[6] Run fn_compare.py 
 ```
 cd src/
 python fn_compare.py ~/facenet/Data/images1/ ~/facenet/Data/images2/ ~/results.csv
