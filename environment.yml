@@ -1,0 +1,19 @@
+name: Facenet
+channels:
+  - javascript
+  - anaconda
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.5   # or 2.7
+  - tensorflow==1.7
+  - scikit-learn
+  - opencv
+  - h5py
+  - matplotlib
+  - Pillow
+  - requests
+  - psutil
+  - xlsxwriter
+
