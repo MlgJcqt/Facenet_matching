@@ -15,7 +15,9 @@ and extract to ~/facenet/data/model/20180402-114759.pb
 
 [3] Put environment.yml and requirements.txt in ~/facenet/
 
-[4] create conda environment 
+[4] create ~/facenet/Data/images1/ and ~/facenet/Data/images2/ with images to compare
+
+[4] set conda environment 
 ```
 cd facenet/
 conda env create -f environment.yml
