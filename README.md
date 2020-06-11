@@ -5,6 +5,11 @@ Requires:
 * Anaconda
 * Python
 
+[1] Get ready-to-go adapted facenet
+```
+git clone https://github.com/davidsandberg/facenet
+```
+
 ./facenet/ contains :
 * Facenet from https://github.com/davidsandberg/facenet
 * Model from https://drive.google.com/file/d/1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-/view
