@@ -30,4 +30,4 @@ conda activate Facenet2.7
 cd src/
 python fn_compare.py ~/facenet/Data/images1/ ~/facenet/Data/images2/ ~/results.csv
 ```
-*fn_compare.py script adapted from original compare.py (modifications allows comparing images from path 1 to images in path2 and copying mathcing scores list in results.csv)
+*fn_compare.py script adapted from original compare.py (modifications allows comparing images from path 1 to images in path2 and copying matching scores list in results.csv)
