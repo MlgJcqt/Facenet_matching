@@ -1,4 +1,8 @@
-"""Performs face alignment and calculates L2 distance between the embeddings of images."""
+# author : Maelig Jacquet
+# June 2020
+# adapted from davidsanberg/facenet
+
+"""Performs face alignment and calculates L2 distance between the embeddings of images from 2 folders."""
 
 # MIT License
 #
@@ -196,14 +200,6 @@ def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
                 images2 = np.stack(img_list)
 
         return images1 if image_paths == listimg1 else images2
-
-
-
-# def weibull(x,a,b):
-#     x2 = x/a
-#     p1 = x2**b
-#     y = b/a * x2**(b-1) * np.exp(-p1)
-#     return(y)
 
 
 images1= load_and_align_data(listimg1, args.image_size, args.margin, args.gpu_memory_fraction)
