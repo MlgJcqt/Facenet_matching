@@ -1,4 +1,4 @@
-name: Facenettest
+name: Facenet
 channels:
   - javascript
   - anaconda
