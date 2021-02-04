@@ -31,22 +31,19 @@ from __future__ import division
 from __future__ import print_function
 
 from scipy import misc
-import sys
-import os
-import argparse
 import tensorflow as tf
 import numpy as np
+import sys
+import os
+import copy
+import argparse
 import facenet
 import align.detect_face
-import random
-from time import sleep
-import copy
 import xlsxwriter
 import itertools
 import cv2
-from PIL import Image
 from tqdm import tqdm
-
+#import imageio
 
 parser = argparse.ArgumentParser()
 
@@ -101,15 +98,15 @@ else :
 def main(listimg1, listimg2):
     with tf.Graph().as_default():
 
-        with tf.compat.v1.Session() as sess:
+        with tf.Session() as sess:
 
             # Load the model
             facenet.load_model(args.model)
 
             # Get input and output tensors
-            images_placeholder = tf.compat.v1.get_default_graph().get_tensor_by_name("input:0")
-            embeddings = tf.compat.v1.get_default_graph().get_tensor_by_name("embeddings:0")
-            phase_train_placeholder = tf.compat.v1.get_default_graph().get_tensor_by_name("phase_train:0")
+            images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
+            embeddings = tf.get_default_graph().get_tensor_by_name("embeddings:0")
+            phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
 
             # Run forward pass to calculate embeddings
             ###### original compare.py modif
@@ -165,16 +162,16 @@ def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
 
     print('Creating networks and loading parameters for :', (os.path.basename(os.path.dirname(image_paths[0]))))
     with tf.Graph().as_default():
-        gpu_options = tf.compat.v1.GPUOptions(per_process_gpu_memory_fraction=args.gpu_memory_fraction)
-        sess = tf.compat.v1.Session(config=tf.compat.v1.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_memory_fraction)
+        sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
         with sess.as_default():
             pnet, rnet, onet = align.detect_face.create_mtcnn(sess, None)
 
     with tqdm(total=len(image_paths), desc = 'Loading and aligning images from %s' % (os.path.basename(os.path.dirname(image_paths[0])))) as pbar2:
         img_list = []
         for image in image_paths:
-            # img = misc.imread(os.path.expanduser(image), mode='RGB')
-            img = np.array(Image.open(os.path.expanduser(image)))
+            img = misc.imread(os.path.expanduser(image), mode='RGB')
+
             img_size = np.asarray(img.shape)[0:2]
             bounding_boxes, _ = align.detect_face.detect_face(img, minsize, pnet, rnet, onet, threshold, factor)
             if len(bounding_boxes) < 1:
@@ -190,12 +187,10 @@ def load_and_align_data(image_paths, image_size, margin, gpu_memory_fraction):
             bb[2] = np.minimum(det[2]+margin/2, img_size[1])
             bb[3] = np.minimum(det[3]+margin/2, img_size[0])
             cropped = img[bb[1]:bb[3],bb[0]:bb[2],:]
-            cropped = Image.fromarray(np.uint8(cropped))
-            aligned = cropped.resize((args.image_size, args.image_size), Image.ANTIALIAS)
-            # aligned = misc.imresize(cropped, (image_size, image_size), interp='bilinear')
-            # prewhitened = facenet.prewhiten(aligned)
+            aligned = misc.imresize(cropped, (image_size, image_size), interp='bilinear')
+            prewhitened = facenet.prewhiten(aligned)
 
-            img_list.append(aligned)
+            img_list.append(prewhitened)
             pbar2.update(1)
 
             if image_paths == listimg1:
