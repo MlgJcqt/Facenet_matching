@@ -24,7 +24,7 @@ and extract to ~/facenet/data/model/20180402-114759.pb
 ```
 $ cd facenet/
 $ conda env create -f environment.yml
-$ conda activate Facenet2.7
+$ conda activate Facenet
 ```
 
 [6] Run fn_compare.py 
