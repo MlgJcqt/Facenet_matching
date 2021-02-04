@@ -5,11 +5,9 @@ Requires:
 * Anaconda
 * Python
 
-⚠ Facenet does not support tensorflow 2.x
-
-[1] Get facenet from https://github.com/davidsandberg/facenet
+[1] Get facenet (adapted for tensorflow 2.x) from https://www.github.com/ghowa/facenet
 ```
-$ git clone https://github.com/davidsandberg/facenet
+$ git clone https://www.github.com/ghowa/facenet
 ```
 
 [2] Get model from https://drive.google.com/file/d/1EXPBSXwTaqrSC0OhUdXNmKSh9qJUQ55-/view
