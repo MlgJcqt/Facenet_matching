@@ -1,4 +1,4 @@
-name: Facenet
+name: Facenettest
 channels:
   - javascript
   - anaconda
@@ -6,8 +6,8 @@ channels:
   - pytorch
   - defaults
 dependencies:
-  - python=3.5 #or 2.7
-  - tensorflow==1.7
+  - python
+  - tensorflow
   - scikit-learn
   - opencv
   - h5py
